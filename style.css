@@ -1,0 +1,28 @@
+#slider-opacity {
+    position: relative;
+    height: 550px;
+}
+
+#slider-opacity>img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 500px;
+    transition: opacity 1s;
+    opacity: 1;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+#slider-opacity>.tabs {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.show {
+    opacity: 1!important;
+}
