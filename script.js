@@ -1,30 +1,28 @@
-function getTemplate() {
-    return `
-      <div class="tabs">
-          <button id="first-slider__prev" data-type="prev">prev</button>
-          <button id="first-slider__next" data-type="next">next</button>
-      </div>
-  `
-}
-
 class Slider {
     constructor(selector, options) {
         this.slider = document.getElementById(selector)
         this.sliderrItems = this.slider.querySelectorAll('img')
-        this.__render()
-        this.__listener()
+        this.getTemplate()
+        this.listener()
         this.currentIndex = 0
         this.slider.querySelectorAll('img')[this.currentIndex].classList.add('show')
     }
-    __render() {
-        this.slider.innerHTML += getTemplate()
-    }
-    __listener() {
+
+    listener() {
         this.nextSlide = this.nextSlide.bind(this)
         this.prevSlide = this.prevSlide.bind(this)
 
         this.slider.addEventListener('click', this.nextSlide)
         this.slider.addEventListener('click', this.prevSlide)
+    }
+    getTemplate() {
+
+        this.slider.innerHTML += `
+        <div class="tabs">
+            <button id="first-slider__prev" data-type="prev">prev</button>
+            <button id="first-slider__next" data-type="next">next</button>
+        </div>
+    `
     }
     currentSlide(index) {
         if (index >= this.sliderrItems.length) this.currentIndex = 0
