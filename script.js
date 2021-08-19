@@ -1,8 +1,17 @@
 class Slider {
     constructor(selector, options) {
+
+        this.options = {
+            ...options,
+            autoplay: options.autoplay || false,
+            autoplaySpeed: options.autoplaySpeed || 2000,
+        }
+
+        this.time = options.time
         this.slider = document.getElementById(selector)
         this.sliderrItems = this.slider.querySelectorAll('img')
         this.getTemplate()
+        this.autoplay(options.autoplaySpeed)
         this.listener()
         this.currentIndex = 0
         this.slider.querySelectorAll('img')[this.currentIndex].classList.add('show')
@@ -50,6 +59,17 @@ class Slider {
         this.slider.querySelectorAll('img')[index].classList.remove('show')
     }
 
+    autoplay(timer) {
+        setInterval(() => {
+            this.removectiveClass(this.currentIndex)
+            this.currentSlide(this.currentIndex + 1)
+            this.addActiveClass(this.currentIndex)
+        }, timer)
+    }
+
 }
 
-let slider = new Slider('slider-opacity', {})
+let slider = new Slider('slider-opacity', {
+    autoplay: true,
+    autoplaySpeed: 5000
+})
